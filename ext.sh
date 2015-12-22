@@ -33,15 +33,10 @@ dd if=/dev/urandom of=/tmp/zfsprobext/file5 bs=256M count=1
 integritycheck
 zfs snapshot problem/fs@end
 
-zfs send problem/fs@3 | zfs recv problem/fs2
-zfs send -i 3 problem/fs@5 | zfs recv problem/fs2
-zfs send -i 5 problem/fs@end | zfs recv problem/fs2
-
 zfs send problem/fs@3 | zfs recv problem/fs3
 zfs send -i 3 problem/fs@end | zfs recv problem/fs3
 
 zfs clone -o readonly=on problem/fs@end problem/clone1
-zfs clone -o readonly=on problem/fs2@end problem/clone2
 zfs clone -o readonly=on problem/fs3@end problem/clone3
 
 # while these checksums are interesting, its really diffs in the clones that
@@ -49,7 +44,6 @@ zfs clone -o readonly=on problem/fs3@end problem/clone3
 #md5sum /problem/fs/file
 #md5sum /problem/fs2/file
 md5sum /problem/clone1/file
-md5sum /problem/clone2/file
 md5sum /problem/clone3/file
 
 umount /tmp/zfsprobext
