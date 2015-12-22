@@ -43,8 +43,8 @@ dd if=/dev/urandom of=/tmp/zfsprobext/file4 bs=256M count=1
 dd if=/dev/urandom of=/tmp/zfsprobext/file5 bs=256M count=1
 zfs snapshot problem/fs@7
 rm /tmp/zfsprobext/file4
-dd if=/dev/urandom of=/tmp/zfsprobext/file5 bs=256M count=1
 dd if=/dev/urandom of=/tmp/zfsprobext/file6 bs=256M count=1
+dd if=/dev/urandom of=/tmp/zfsprobext/file7 bs=256M count=1
 # This needs to be the last thing, mess withthe FS up there ^^
 integritycheck
 zfs snapshot problem/fs@end
