@@ -16,9 +16,6 @@ mount -o discard $device /tmp/zfsprobext
 
 integritycheck (){
     sync
-    umount /tmp/zfsprobext
-    mount -o discard $device /tmp/zfsprobext
-
 }
 
 dd if=/dev/urandom of=/tmp/zfsprobext/file1 bs=256M count=1
