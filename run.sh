@@ -5,7 +5,7 @@ zpool create -o version=28 problem $(readlink -f zpool.file)
 zfs create -o compression=on -o mountpoint=/tmp/zfsprob problem/fs
 
 # create a 12 k file
-truncate -s 12k file
+truncate -s 12k /tmp/zfsprob/file
 zfs snapshot problem/fs@base
 # write random data to the end
 dd if=/dev/urandom of=/tmp/zfsprob/file bs=4k seek=2 count=1 conv=notrunc
