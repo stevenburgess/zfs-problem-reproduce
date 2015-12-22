@@ -16,6 +16,7 @@ mount -o discard $device /tmp/zfsprobext
 
 integritycheck (){
     sync
+    echo "synced"
 }
 
 dd if=/dev/urandom of=/tmp/zfsprobext/file1 bs=256M count=1
@@ -31,11 +32,6 @@ rm /tmp/zfsprobext/file2
 integritycheck
 zfs snapshot problem/fs@4
 dd if=/dev/urandom of=/tmp/zfsprobext/file2 bs=256M count=1
-integritycheck
-zfs snapshot problem/fs@5
-rm /tmp/zfsprobext/file1
-integritycheck
-zfs snapshot problem/fs@6
 dd if=/dev/urandom of=/tmp/zfsprobext/file4 bs=256M count=1
 dd if=/dev/urandom of=/tmp/zfsprobext/file5 bs=256M count=1
 # This needs to be the last thing, mess withthe FS up there ^^
