@@ -27,8 +27,6 @@ zfs snapshot problem/fs@3
 rm /tmp/zfsprobext/file2
 integritycheck
 dd if=/dev/urandom of=/tmp/zfsprobext/file2 bs=256M count=1
-dd if=/dev/urandom of=/tmp/zfsprobext/file4 bs=256M count=1
-dd if=/dev/urandom of=/tmp/zfsprobext/file5 bs=256M count=1
 # This needs to be the last thing, mess withthe FS up there ^^
 integritycheck
 zfs snapshot problem/fs@end
