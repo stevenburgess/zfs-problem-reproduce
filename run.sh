@@ -17,7 +17,7 @@ zfs snapshot problem/fs@2
 dd if=/dev/zero of=/tmp/zfsprob/file bs=4k seek=2 count=1 conv=notrunc
 zfs snapshot problem/fs@3
 # overwrite begining with 00s
-dd if=/dev/zero of=/tmp/zfsprob/file bs=4k count=1 conv=notruncconv=notrunc
+dd if=/dev/zero of=/tmp/zfsprob/file bs=4k count=1 conv=notrunc
 zfs snapshot problem/fs@4
 # overwrite the whole thing with random
 dd if=/dev/urandom of=/tmp/zfsprob/file bs=4k count=3 conv=notrunc
