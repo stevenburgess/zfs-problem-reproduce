@@ -13,17 +13,12 @@ mkfs.ext4 -E discard $device
 mkdir /tmp/zfsprobext
 mount -o discard $device /tmp/zfsprobext
 
-integritycheck (){
-    sync
-    echo "synced"
-}
-
 dd if=/dev/urandom of=/tmp/zfsprobext/file2 bs=256M count=1
-integritycheck
+sync
 zfs snapshot problem/fs@3
 rm /tmp/zfsprobext/file2
 # This needs to be the last thing, mess withthe FS up there ^^
-integritycheck
+sync
 zfs snapshot problem/fs@end
 
 zfs send problem/fs@3 | zfs recv problem/fs3
