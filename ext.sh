@@ -1,6 +1,6 @@
 #!/bin/bash
 
-truncate -s 100G zpool.file
+truncate -s 5G zpool.file
 zpool create -o version=28 problem $(readlink -f zpool.file)
 #zpool create problem $(readlink -f zpool.file)
 zfs create -o compression=on problem/fs
