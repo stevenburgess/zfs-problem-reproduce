@@ -21,14 +21,14 @@ rm /tmp/zfsprobext/file2
 sync
 zfs snapshot problem/fs@end
 
-zfs send problem/fs@middle | zfs recv problem/fs3
-zfs send -i middle problem/fs@end | zfs recv problem/fs3
+zfs send problem/fs@middle | zfs recv problem/fs2
+zfs send -i middle problem/fs@end | zfs recv problem/fs2
 
 zfs clone -o readonly=on problem/fs@end problem/clone1
-zfs clone -o readonly=on problem/fs3@end problem/clone3
+zfs clone -o readonly=on problem/fs2@end problem/clone2
 
 md5sum /problem/clone1/file
-md5sum /problem/clone3/file
+md5sum /problem/clone2/file
 
 umount /tmp/zfsprobext
 losetup -d $device
