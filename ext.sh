@@ -15,14 +15,14 @@ mount -o discard $device /tmp/zfsprobext
 
 dd if=/dev/urandom of=/tmp/zfsprobext/file2 bs=256M count=1
 sync
-zfs snapshot problem/fs@3
+zfs snapshot problem/fs@middle
 rm /tmp/zfsprobext/file2
 # This needs to be the last thing, mess withthe FS up there ^^
 sync
 zfs snapshot problem/fs@end
 
-zfs send problem/fs@3 | zfs recv problem/fs3
-zfs send -i 3 problem/fs@end | zfs recv problem/fs3
+zfs send problem/fs@middle | zfs recv problem/fs3
+zfs send -i middle problem/fs@end | zfs recv problem/fs3
 
 zfs clone -o readonly=on problem/fs@end problem/clone1
 zfs clone -o readonly=on problem/fs3@end problem/clone3
